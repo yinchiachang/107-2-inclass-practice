@@ -1,11 +1,49 @@
 ---
 title: '2019-03-20'
-author: ""
+author: "chiachia"
 date: "3/20/2019"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+dialogue <- c('小明說:明天不用上課。',
+              '小花說:真的嗎?')
+cat(dialogue, sep="\n")
+
+```
+
+```{r}
+studentMajors <- factor(
+  c("經濟系", "經濟系", "法律系")
+)
+```
+
+```{r}
+studentMajor <- 
+  c("經濟系", "經濟系", "法律系")
+```
+```{r}
+class(studentMajors)
+```
+
+```{r}
+class(studentMajor)
+```
+
+```{r}
+birthplace <- factor(
+c("台北市", "台中市", "高雄市", "台南市")
+)
+class(birthplace)
+levels(birthplace)
+as.integer(birthplace)
+```
+
+```{r}
+library(lubridate)
 ```
 
