@@ -10,21 +10,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-dialogue <- c('¤p©ú»¡:©ú¤Ñ¤£¥Î¤W½Ò¡C',
-              '¤pªá»¡:¯uªº¶Ü?')
+dialogue <- c('å°æ˜Žèªª:æ˜Žå¤©ä¸ç”¨ä¸Šèª²ã€‚',
+              'å°èŠ±èªª:çœŸçš„å—Ž?')
 cat(dialogue, sep="\n")
 
 ```
 
 ```{r}
 studentMajors <- factor(
-  c("¸gÀÙ¨t", "¸gÀÙ¨t", "ªk«ß¨t")
+  c("ç¶“æ¿Ÿç³»", "ç¶“æ¿Ÿç³»", "æ³•å¾‹ç³»")
 )
 ```
 
 ```{r}
 studentMajor <- 
-  c("¸gÀÙ¨t", "¸gÀÙ¨t", "ªk«ß¨t")
+  c("ç¶“æ¿Ÿç³»", "ç¶“æ¿Ÿç³»", "æ³•å¾‹ç³»")
 ```
 ```{r}
 class(studentMajors)
@@ -36,7 +36,7 @@ class(studentMajor)
 
 ```{r}
 birthplace <- factor(
-c("¥x¥_¥«", "¥x¤¤¥«", "°ª¶¯¥«", "¥x«n¥«")
+c("å°åŒ—å¸‚", "å°ä¸­å¸‚", "é«˜é›„å¸‚", "å°å—å¸‚")
 )
 class(birthplace)
 levels(birthplace)
