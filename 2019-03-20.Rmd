@@ -46,4 +46,17 @@ as.integer(birthplace)
 ```{r}
 library(lubridate)
 ```
+```{r}
+dtObjectVector<-ymd_hms(
+  c("2019-03-20 16:53:00")
+)
+```
 
+```{r}
+class(dtObjectVector)
+```
+```{r}
+class(dtObjectVector)
+typeof(dtObjectVector)
+as.double(dtObjectVector)
+```
