@@ -73,3 +73,9 @@ class(a*b)
 twDateTime <- ymd_hms("2019-03-27 16:23:15",tz="Asia/Taipei")
 twDateTime-1
 ```
+
+```{r}
+startingdate <- ymd("2019-03-27")
+startingdate + years(2)
+startingdate + dyears(1)
+```
