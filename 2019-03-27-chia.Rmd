@@ -28,3 +28,21 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+library(lubridate)
+dtObject<-ymd_hms("2019-03-27 15:50:30")
+```
+
+```{r}
+dtObjectivector<-ymd_hms("2019-03-27 15:57:45")
+```
+
+```{r}
+twDateTime <- ymd_hms("2019-03-27 15:58:45",tz="Asia/Taipei")
+```
+
+```{r}
+LisbonDateTime <- with_tz(twDateTime,tzone = "Europe/Lisbon")
+as.integer(twDateTime)
+```
