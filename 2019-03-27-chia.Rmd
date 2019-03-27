@@ -79,3 +79,11 @@ startingdate <- ymd("2019-03-27")
 startingdate + years(2)
 startingdate + dyears(1)
 ```
+
+```{r}
+x <- 5
+y <- 9
+x>y
+x<y
+x=y
+```
