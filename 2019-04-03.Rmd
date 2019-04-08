@@ -45,4 +45,13 @@ x1 == y1
 ```{r}
 x2 <- c("台北","台中","台南")
 y2 <- c("台北","台中")
+
+x2 %in% y2
+```
+
+
+```{R}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+currency <- exData2$幣別
 ```
