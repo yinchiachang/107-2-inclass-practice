@@ -111,3 +111,16 @@ sum(currency1 == "日圓")
 head(currency)
 currency == "日圓JPY/USD"
 ```
+
+```{r}
+sum(currency == "日圓JPY/USD" )
+```
+
+
+```{r}
+x5 <- c("台北市","新北市","高雄市")
+greatTaipei <- c("台北市","新北市")
+
+x5 %in% greatTaipei
+!(x5 %in% greatTaipei)
+```
