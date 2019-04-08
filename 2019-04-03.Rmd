@@ -122,5 +122,57 @@ x5 <- c("台北市","新北市","高雄市")
 greatTaipei <- c("台北市","新北市")
 
 x5 %in% greatTaipei
+```
+
+```{r}
 !(x5 %in% greatTaipei)
 ```
+
+
+```{r}
+y5 <- c("女","男","女")
+
+y5=="女"
+```
+
+```{r}
+!(y5=="女")
+```
+```{r}
+x5 %in% greatTaipei
+y5 == "女"
+(x5 %in% greatTaipei) & (y5=="女")
+```
+```{r}
+y5
+(y5 == "女")
+which(y5=="女")
+```
+```{r}
+(x5 %in% greatTaipei) | (y5=="女")
+```
+```{r}
+x5
+y5
+```
+
+```{r}
+x5 %in% greatTaipei
+y5 == "女"
+(x5 %in% greatTaipei) | (y5=="女")
+```
+```{r}
+y5
+(y5 == "女")
+which(y5=="女")
+```
+```{r}
+x5 %in% greatTaipei
+y5 == "女"
+xor(x5 %in% greatTaipei, y5=="女")
+```
+```{r}
+which(xor(x5 %in% greatTaipei ,y5=="女"))
+```
+
+
