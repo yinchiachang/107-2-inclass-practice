@@ -58,3 +58,56 @@ currency <- exData2$幣別
 ```{r}
 head(currency)
 ```
+```{r}
+levels(currency)
+```
+
+```{r}
+class(currency)
+```
+
+```{r}
+currency <- as.factor(currency)
+class(currency)
+```
+
+```{r}
+step2_countVectorLength
+```
+```{r}
+levels(currency)
+```
+```{r}
+length(levels(currency))
+```
+```{r}
+step1_extractLevelsVector <- levels(currency)
+step1_extractLevelsVector
+```
+
+```{r}
+step2_countVectorLength <- length(step1_extractLevelsVector)
+```
+
+```{r}
+head(currency)
+levels(currency)
+```
+
+```{r}
+currency1 <- c("日圓","人民幣","日圓")
+```
+
+```{r}
+currency1
+```
+
+```{r}
+currency1 == "日圓"
+sum(currency1 == "日圓")
+```
+
+```{r}
+head(currency)
+currency == "日圓JPY/USD"
+```
