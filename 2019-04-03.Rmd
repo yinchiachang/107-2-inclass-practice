@@ -28,10 +28,17 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
 ```{r}
 x1 <- c("小明","小花")
-y1 <- c("小明","大花")
+y1 <- c("小明","小華")
 ```
 
-```{r} ==
+```{r}
+x1 == y1
+x1 != y1
+```
+! negation
+```{r}
+x1 == y1
+!(x1 == y1)
+```
