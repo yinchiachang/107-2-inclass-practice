@@ -175,6 +175,7 @@ xor(x5 %in% greatTaipei, y5=="女")
 which(xor(x5 %in% greatTaipei ,y5=="女"))
 ```
 
+
 ```{r}
 library(readr)
 exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
@@ -196,6 +197,7 @@ date <- ymd(date)
 ```{r}
 class(date)
 ```
+1980-08-01之後的資料有多少筆
 ```{r}
 isafter19800801 <- date >= ymd("1980-08-01")
 isafter19800801
@@ -216,7 +218,7 @@ sum(isafter19800801)
 
 
 
-
+幣別為“歐元USD/EUR”的資料有多少筆
 ```{r}
 head(currency)
 ```
@@ -239,10 +241,84 @@ iseuro <- currency =="歐元USD/EUR"
 sum(iseuro)
 ```
 
-
+exchangeRate有多少筆NA
 ```{r}
 isexchangeNA <- is.na(exchangeRate)
 sum(isexchangeNA)
 ```
+
+
+排除NA後，幣別為“歐元USD/EUR”的資料有多少筆。
+```{r}
+isnotna <- !is.na(exchangeRate)
+iseuro <- currency =="歐元USD/EUR"
+```
+```{r}
+both <- isnotna & iseuro
+sum(both)
+```
+
+```{r}
+both <- !is.na(exchangeRate) & currency =="歐元USD/EUR"
+sum(both)
+```
+
+
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+courseType <- transcriptDataFinal$`必選修類別（必∕選∕通）`
+major <- transcriptDataFinal$學系
+studentID <- transcriptDataFinal$學號
+grade <- transcriptDataFinal$學期成績
+```
+
+有多少筆資料是來自經濟學系
+```{r}
+iseconomic <- major == "經濟學系"
+sum(iseconomic)
+```
+
+請問學號“5bdS6977b”同學修了多少課
+```{r}
+studentID == "5bdS6977b"
+sum(studentID == "5bdS6977b")
+```
+
+請問學號“5bdS6977b”有多少科成績及格
+```{r}
+sum(studentID == "5bdS6977b" & grade >=60)
+```
+
+有多少筆資料來自經濟學系學生且為選修課
+```{r}
+iseconomic <- major == "經濟學系"
+iscourse <- courseType =="選"
+sum(iseconomic & iscourse)
+```
+
+在經濟學系學生且必修課程
+```{r}
+iseconomic <- major == "經濟學系"
+iscourse <- courseType =="必"
+both <- iseconomic & iscourse
+sum(both)
+```
+
+```{r}
+grade <= 60
+sum(both & grade < 60 )
+```
+
+```{r}
+sum(both & grade < 60)/sum(both)
+```
+
+
+
+
+
+
+
 
 
