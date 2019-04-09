@@ -175,4 +175,74 @@ xor(x5 %in% greatTaipei, y5=="女")
 which(xor(x5 %in% greatTaipei ,y5=="女"))
 ```
 
+```{r}
+library(readr)
+exData2 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData2.csv")
+date <- as.character(exData2$期間)
+currency <- exData2$幣別
+exchangeRate <- exData2$匯率
+```
+```{r}
+class(date)
+```
+```{r}
+head(date)
+```
+```{r}
+library(lubridate)
+date <- ymd(date)
+```
+
+```{r}
+class(date)
+```
+```{r}
+isafter19800801 <- date >= ymd("1980-08-01")
+isafter19800801
+```
+```{r}
+head(as.integer(date))
+as.integer(ymd("1980-08-01"))
+head(date >= ymd("1980-08-01"))
+```
+```{r}
+class(isafter19800801)
+```
+```{r}
+sum(isafter19800801)
+```
+
+
+
+
+
+
+```{r}
+head(currency)
+```
+
+```{r}
+head(currency == "歐元USD/EUR")
+iseuro <- currency == "歐元USD/EUR"
+
+```
+```{r}
+sum(currency == "歐元USD/EUR")
+```
+```{r}
+currency <- as.factor(currency)
+```
+
+```{r}
+sum(currency =="歐元USD/EUR")
+iseuro <- currency =="歐元USD/EUR"
+sum(iseuro)
+```
+
+
+```{r}
+isexchangeNA <- is.na(exchangeRate)
+sum(isexchangeNA)
+```
+
 
