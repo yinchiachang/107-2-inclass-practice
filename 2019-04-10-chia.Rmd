@@ -49,3 +49,28 @@ str_sub
 str_sub(studentID , 5,6)
 ```
 
+```{r}
+month <- c("3","4","2")
+day <- c("11","5","7")
+```
+
+```{r}
+chineseDate <- c("3月11日","4月5日","2月7日")
+```
+
+```{r}
+char1 <- c("月","月","月")
+char2 <- c("日","日","日")
+month
+char1
+day 
+char2
+str_c(month,char1,day,char2)
+```
+```{r}
+str_c(month,c("月"),day,c("日"))
+str_c(month,"月",day,"日")
+```
+```{r}
+str_c( month,day, sep="-")
+```
