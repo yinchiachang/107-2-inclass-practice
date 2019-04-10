@@ -74,3 +74,10 @@ str_c(month,"月",day,"日")
 ```{r}
 str_c( month,day, sep="-")
 ```
+
+```{r}
+library(readr)
+githubData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/githubData.csv")
+username <- githubData$`GitHub username`[11:16]
+reponame <- githubData$`GitHub repo name`[11:16]
+```
