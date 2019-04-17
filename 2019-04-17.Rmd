@@ -139,6 +139,10 @@ unlist(favoriteTwoList) -> allVotes # 將list堆疊成atomic vector
 table(allVotes) # 計算每個類別的次數
 ```
 ```{r}
+favoriteTwo
+```
+
+```{r}
 logiCorrect <- str_length(birthday)==8
 logiCorrect
 ```
