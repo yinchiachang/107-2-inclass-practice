@@ -107,7 +107,7 @@ length(成績單)
 
 ```{r}
 
-your_github_username <- "tpemartin"
+your_github_username <- "yinchiachang"
 your_practice_reponame <- "107-2-inclass-practice"
 library(httr)
 library(stringr)
@@ -121,6 +121,9 @@ str_replace_all(
 commitCheck <- content(GET(commitCheckStatement))
 ```
 
+```{r}
+commitCheck[["message"]]
+```
 
 
 
