@@ -45,18 +45,47 @@ Mat1[[2]]
 
 ```{r}
 Mat2 <- matrix(c("a","b","c","d"),2,2)
+class(Mat2)
+typeof(Mat2)
 Mat2
 ```
 ```{r}
 Mat2[1]
 Mat2[[1]]
+
+Mat2[c(T,F,T,T)]
 ```
 
-
-
-
-
-
+```{r}
+StuList <- list(學號=c(172,214,322,425,517),
+                  姓名=c("小明","大雄","胖虎","小新","大白"),
+                  成績=c(80,60,90,70,50)
+                  )
+StuList
+```
+```{r}
+StuDF <- data.frame(學號=c(172,214,322,425,517),
+                  姓名=c("小明","大雄","胖虎","小新","大白"),
+                  成績=c(80,60,90,70,50)
+                  )
+StuDF
+```
+          
+```{r}
+StuDF[2]
+StuDF[["姓名"]]
+StuDF[[2]][[3]]
+```
+```{r}
+StuDF[[2]]
+```
+```{r}
+class(StuDF$姓名)
+```
+```{r}
+StuDF$姓名 <- as.character(StuDF$姓名)
+class(StuDF$姓名)
+```
 
 
 
