@@ -50,9 +50,8 @@ typeof(Mat2)
 Mat2
 ```
 ```{r}
-Mat2[1]
 Mat2[[1]]
-
+Mat2[c(1,3,4)]
 Mat2[c(T,F,T,T)]
 ```
 
@@ -86,9 +85,36 @@ class(StuDF$姓名)
 StuDF$姓名 <- as.character(StuDF$姓名)
 class(StuDF$姓名)
 ```
+```{r}
+StuDF2 <- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50),
+  stringsAsFactors = FALSE
+  )
+StuDF2
+```
 
 
-
+```{r}
+StuDF3 <- as.data.frame(StuList)
+class(StuDF3)
+StuDF3
+```
+```{r}
+LETTERS
+letters
+chosenLETTERS <- LETTERS[1:15]
+chosenletters <- letters[1:15]
+matObj1 <- matrix(chosenLETTERS,5,3)
+matobj2 <- matrix(chosenletters,5,3)
+matObj1
+matobj2
+```
+```{r}
+tolower(chosenLETTERS)
+tolower(matObj1)
+```
 
 
 
