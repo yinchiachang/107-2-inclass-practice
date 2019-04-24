@@ -116,11 +116,18 @@ tolower(chosenLETTERS)
 tolower(matObj1)
 ```
 
-
-
-
-
-
+```{r}
+matObj1
+matObj1[8]
+matObj1[[8]]
+matObj1[[3,2]]
+```
+```{r}
+matObj1[c(1,4),c(2,3)]
+```
+```{r}
+matObj1[c(T,F,F,T,F),c(F,T,T)]
+```
 
 
 
