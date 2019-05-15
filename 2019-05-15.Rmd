@@ -134,4 +134,7 @@ isAsiaCrisis <- ( ymd("1997-06-01") <= exData3[[1]] & ymd("1998-12-01") >= exDat
 head(exData3[[1]])
 isAsiaCrisis
 ```
+```{r}
+logiAsiaCrisis <- exData3$isAsiaCrisis
+exData3[logiAsiaCrisis, ]
 ```
