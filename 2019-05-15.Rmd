@@ -103,3 +103,35 @@ b
 b[[4]] <- ("新元素")
 b
 ```
+
+```{r}
+names(b)
+
+b[["新元素A"]] <- c(1,2,3)
+b$新元素B <- c(T,F,T)
+b
+```
+
+```{r}
+library(readr)
+exData3 <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/exData3.csv",
+                    col_types = cols(
+                      匯率 = col_number(),
+                      期間 = col_character()))
+head(exData3[[3]])
+colnames(exData3)
+names(exData3)
+```
+
+```{r}
+library(lubridate)
+exData3[[1]] <- ymd(exData3[[1]])
+class(exData3[[1]])
+```
+
+```{R}
+isAsiaCrisis <- ( ymd("1997-06-01") <= exData3[[1]] & ymd("1998-12-01") >= exData3[[1]])
+head(exData3[[1]])
+isAsiaCrisis
+```
+```
