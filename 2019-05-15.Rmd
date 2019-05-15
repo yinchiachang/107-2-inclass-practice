@@ -171,3 +171,32 @@ utility_yo <- function(x,.alpha)
 }
 class(utility_yo)
 ```
+
+```{r}
+supply_fun <- function(a,b,P,Qs)
+             {Qs = a + b*P
+              return(Qs)}
+class(supply_fun)
+supply_fun(4,2,2)
+```
+
+```{r}
+demand_fun <- function(c,d,P,Qd)
+{Qd <- c - d*P
+return(Qd)}
+class(demand_fun)
+```
+
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+```
+
+```{r}
+idnumber <- transcriptDataFinal$學號=="92aS67fee"
+subsample <- transcriptDataFinal[idnumber,]
+subsample
+
+GPA <- sum(subsample$學期成績*subsample$學分數)/sum(subsample$學分數)
+GPA
+```
