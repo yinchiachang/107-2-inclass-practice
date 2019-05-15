@@ -138,3 +138,36 @@ isAsiaCrisis
 logiAsiaCrisis <- exData3$isAsiaCrisis
 exData3[logiAsiaCrisis, ]
 ```
+
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+```
+
+```{r}
+names(transcriptDataFinal)
+```
+
+```{r}
+idnumber <- transcriptDataFinal[[1]]=="92aS67fee"
+transcriptDataFinal[idnumber,]
+```
+
+```{r}
+utility_cobb_douglass <- function(x,y,.alpha,.beta){
+  utilValue <- x^.alpha*y^.beta # 程序產生output值
+  return(utilValue) # 傳回output值
+}
+```
+
+```{r}
+class(utility_cobb_douglass)
+```
+
+```{r}
+utility_yo <- function(x,.alpha)
+              {valueyo <- x+alpha
+              return(valueyo)
+}
+class(utility_yo)
+```
