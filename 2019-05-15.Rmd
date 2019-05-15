@@ -1,0 +1,79 @@
+---
+title: '2019-05-15'
+author: "chia"
+date: "2019年5月15日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{R}
+Vector1 <- letters[1:6]
+Vector1
+
+names(Vector1)
+```
+
+```{R}
+names(Vector1) <- c("名稱1","名稱2","名稱3","名稱4","名稱5")
+
+names(Vector1)
+```
+
+```{r}
+StuDF2 <- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50),
+  stringsAsFactors = FALSE
+  )
+StuDF2 
+
+```
+
+```{r}
+colnames(StuDF2)
+
+names(StuDF2)   ##names是list的名稱
+```
+
+```{r}
+colnames(StuDF2) <- c("col1","col2","col3")
+colnames(StuDF2)
+StuDF2
+```
+
+只改col2的名稱
+```{r}
+colnames(StuDF2)[[2]] <- ("名稱")
+colnames(StuDF2)
+StuDF2
+```
+
+改col2,col3的名稱
+```{R}
+colnames(StuDF2)[c(2,3)] <- c("名稱","成績")
+colnames(StuDF2)
+StuDF2
+```
