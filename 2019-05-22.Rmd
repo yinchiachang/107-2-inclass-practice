@@ -27,29 +27,110 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
+
 ```{r}
+
 library(readr)
+
 invoiceList <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/invoiceList.csv",
+
 col_types = cols(訂單時間.以訂單時區顯示. = col_character()))
+
 names(invoiceList)[[2]] <- "訂單時區之下單時間"
+
 ```
+
+
 
 ```{r}
 library(lubridate)
+
 (invoiceList$訂單時區=="America/New_York") -> nyLogical
+
 (invoiceList$訂單時區=="Asia/Taipei") -> tpLogical
 
-ymd_hms(invoiceList$訂單時區之下單時間[nyLogical] ##中括號取為TRUE的狀況
-        ,tz="America/New_York") -> nyDateTime
 
+
+invoiceList$nyLogical <- nyLogical
+
+invoiceList$tpLogical <- tpLogical
+
+
+
+library(lubridate)
+
+ymd_hms(invoiceList$`訂單時區之下單時間`[nyLogical],
+
+          tz="America/New_York") -> nyDateTime
+
+ymd_hms(invoiceList$訂單時區之下單時間[tpLogical],
+        
+        tz="Asia/Taipei") -> tpDateTime
+
+```
+
+
+```{r}
+library(readr)
+transcriptDataFinal <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/transcriptDataFinal.csv")
+
+studentID <-"92aS67fee" 
+transcriptDataFinal$學號==studentID -> logiChosenStudent
+
+subSample <- transcriptDataFinal[logiChosenStudent,]
+
+sum(subSample$學期成績*subSample$學分數)/
+  sum(subSample$學分數) -> GPA
+```
+```{r}
+gpa_fun <- function(studentID){
+
+studentID <-"92aS67fee" 
+transcriptDataFinal$學號==studentID -> logiChosenStudent
+
+subSample <- transcriptDataFinal[logiChosenStudent,]
+
+sum(subSample$學期成績*subSample$學分數)/
+  sum(subSample$學分數) -> GPA
+  
+  return(GPA)
+}
+```
+請把以America/New_York時區輸入的時間字串"1973-02-21 12:05:22"，轉成date time class, 再改成Asia/Taipei時間顯示。
+```{r}
+ymd_hms("1973-02-21 12:05:22",tz="America/New_York") -> americatime
+taipeitime <- with_tz(americatime,tzone = "Asia/Taipei")
+taipeitime
+```
+
+```{r}
+ymd_hms_tzChange <- function(input,fromTzone,toTzone){
+  time1 <- ymd_hms(input,tz=fromTzone)
+  answer <- with_tz(time1,tzone = toTzone)
+  return(answer)
+}
+ymd_hms_tzChange("1973-02-21 12:05:22","America/New_York","Asia/Taipei")
+```
+
+```{r}
 invoiceList$UTC時間[nyLogical] <-
-  with_tz(ymd_hms(invoiceList$`訂單時區之下單時間`[nyLogical], ##中括號取為TRUE的狀況
-          tz="America/New_York"),tzone="UTC")
+
+  with_tz(nyDateTime,tzone="UTC")
+
+
+
+ymd_hms(invoiceList$`訂單時區之下單時間`[tpLogical],
+
+          tz="Asia/Taipei") -> tpDateTime
+
 invoiceList$UTC時間[tpLogical] <-
-  with_tz(ymd_hms(invoiceList$`訂單時區之下單時間`[tpLogical],
-          tz="Asia/Taipei"),tzone="UTC")
+
+  with_tz(tpDateTime,tzone="UTC")
+
+
 
 invoiceList 
+
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
