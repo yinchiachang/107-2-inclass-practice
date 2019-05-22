@@ -158,4 +158,13 @@ yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
 return(yyyymmdd)}
 ymdchange(twDates)
 ```
+
+```{R}
+ymdchange <- function(a,dd="02"){
+  yyyy<-as.integer(str_extract(a,"(?<=(民國))[:digit:]+"))+1911
+mm<-str_extract(a,"[:digit:]+(?=月)")
+yyyymmdd <- ymd(str_c(yyyy,mm,dd,sep="-"))
+return(yyyymmdd)}
+ymdchange(twDates)
+```
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
