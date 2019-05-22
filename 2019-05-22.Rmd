@@ -133,4 +133,29 @@ invoiceList
 
 ```
 
+
+```{r}
+
+library(stringr)
+sample(99:103,15,replace = T)-> yy
+sample(1:12,15,replace=T)-> mm
+str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
+twDates
+```
+執行以下程序會把民國年月字串物件twDates轉成date class的西元年月日物件yyyymmdd，其中dd為01
+```{r}
+library(stringr); library(lubridate)
+yyyy<-as.integer(str_extract(twDates,"(?<=(民國))[:digit:]+"))+1911
+mm<-str_extract(twDates,"[:digit:]+(?=月)")
+yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
+```
+
+```{R}
+ymdchange <- function(a){
+  yyyy<-as.integer(str_extract(a,"(?<=(民國))[:digit:]+"))+1911
+mm<-str_extract(a,"[:digit:]+(?=月)")
+yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
+return(yyyymmdd)}
+ymdchange(twDates)
+```
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
