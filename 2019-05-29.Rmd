@@ -164,9 +164,12 @@ supply_fun4 <- function(P,a,b){
     return(Qs)
   }
 }
-supply_fun4(P=-1,-3,1)
-supply_fun4(P=2,-3,1)
-supply_fun4(P=3,-3,1)
+supply_fun4(P=-1,-3,1) -> aa
+supply_fun4(P=2,-3,1) -> bb
+supply_fun4(P=3,-3,1) -> cc
+aa
+bb
+cc
 ```
 
 
