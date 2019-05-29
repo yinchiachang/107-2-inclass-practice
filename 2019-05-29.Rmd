@@ -151,20 +151,7 @@ gpa_fun2 <- function(studentID){
   
 }
 ```
-```{r}
-a <- readline(prompt = "請輸入一個數字： ")
-if(a==1) {
-  print("你輸入了1")
-} else if(a==2) {
-  print("你輸入了2")
-} else if(a==3) {
-  print("你輸入了3")
-} else {
-  print("你輸入了其他數字")
-}
 
-
-```
 
 ```{r}
 supply_fun4 <- function(P,a,b){
