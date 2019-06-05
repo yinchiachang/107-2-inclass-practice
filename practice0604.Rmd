@@ -1,0 +1,195 @@
+---
+title: "practice"
+author: "chia"
+date: "2019年6月4日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+
+```{r}
+x <- as.character(round(runif(10)*100),10)
+x
+```
+請產生一個logical class答案物件名為logicBig，其中元素值為TRUE若x對應值大於50（不包含50），反之為FALSE。答案物件請寫在最後一行。
+```{r}
+x <- as.integer(x)
+logicBig <- x > 50
+logicBig
+```
+
+建立一個答案物件compoundObject, 其中compoundObject[[1]]會得到數字1 (numeric class), compoundObject[[2]]會得到字串“hello”(character class),compoundObject[[3]]會得到邏輯TRUE (logical class)。
+```{r}
+compoundObject <- list(1,"hello",TRUE)
+compoundObject
+
+```
+有時我們會需要對list裡的每個元素取出相同位置的值，例如以下的a物件，其中對於「學號」「成績」元素的值，相同位置來自相同學生。如果我們想對每個元素取相同位置的值出來，我們可以用purrr套件裡的map()進行操作，方式為map(a,~.ObjectExtraction)
+```{r}
+library(purrr)
+a <- list(
+  學號=c("a23","a22","a41"),
+  成績=c(88,76,82)
+)
+map(a,~.[[2]]) ### 取出每個元素第二位
+map(a,~.[c(1,3)]) ### 取出每個元素第一及第三位
+map(a,~.[c(T,F,T)]) ### 取出每個元素第一及第三位
+```
+
+```{r}
+randomGrades <- sample(40:80,15,replace = T)
+randomCredits <- sample(0:3,15,replace=T)
+data3 <- list(
+  成績=randomGrades,
+  學分數=randomCredits
+)
+```
+
+請選出成績大於等於60的資料並存在passData這個帶有「成績」及「學分數」的list物件。此題答案物件為passData。
+
+```{r}
+passLogic <- data3$成績>=60
+map(data3,~.[passLogic]) -> passData
+passData
+```
+```{r}
+data3<-as.data.frame(data3)
+pass <- randomGrades > 60 
+
+passData <- as.list(data3[pass,]) 
+passData
+```
+
+
+執行以下程式產生台灣民國年月字串物件twDates。
+```{r}
+library(stringr)
+sample(99:103,15,replace = T)-> yy
+sample(1:12,replace=T)-> mm
+str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
+### twDates
+```
+請將twDates中的“民國”及“月”都去除，並存在twDates2答案物件，如：“民國099年2月”會變成“099年2”。
+
+```{r}
+twDates
+y <- str_replace(twDates,"民國","")
+y
+twDates2 <- str_replace(y,"月","")
+twDates2
+
+```
+
+```{r}
+char1 <- c("月","月","月")
+char2 <- c("日","日","日")
+
+char1
+
+char2
+str_c(char1,char2)
+```
+5.2 取出年份
+取出民國年的並加上1911年轉成西元年，將此年份存在答案物件westYears裡（class為integer）。(hint: str_split()可分割字串,再使用第3題取出你要的部份)
+
+```{r}
+ym <- str_split(twDates2,"年")
+ym[[1]][[1]]
+class(map(ym,~.[[1]]))
+westYears <- as.integer(map(ym,~.[[1]]))+1911
+westYears
+```
+
+5.3 西元年月日
+將twDates民國年月轉成date class的西元年月日，原始資料沒有日，請設定成每月1日。例如：“民國100年5月”會轉成2011-05-01的date class日期。答案請存westDates答案物件。
+
+```{r}
+str_split(twDates2,"年") -> dateList
+map(dateList,~.[[1]]) -> yy
+as.integer(yy)+1911 -> westYears
+
+westYears
+
+map(dateList,~.[[2]]) -> mm
+mm
+str_c(westYears,mm,"1",sep="-") -> ymdString
+ymdString
+ymd(ymdString) -> westDates
+
+westDates
+```
+
+```{r}
+ym
+mm <- as.integer(map(ym,~.[[2]]))
+str_c(westYears,"-",mm,"-01")
+library(lubridate)
+westDates <- ymd(str_c(westYears,"-",mm,"-01"))
+westDates
+```
+
+6 differen time zone
+執行以下程式引入invoiceList物件，其中「訂單時區」與「訂單時間(以訂單時區顯示)」的每筆資料是訂單來自時區及以該時區輸入的下單時間字串，「UTC時間」則是個目前無特別意義的UTC時間。
+
+```{r}
+load("invoiceList.Rda")
+str(invoiceList)
+names(invoiceList) <-
+  c('訂單時區','訂單時間(以訂單時區顯示)','UTC時間')
+
+
+
+
+```
+
+
+```{r}
+a <- readline(prompt = "-2")
+if(a < 0) {
+  print("a為負值")
+}
+```
+
+```{r}
+supply_fun2 <- function(P,a,b){
+  Qs <- a+b*P
+  if(P>=0) {
+    return(Qs)
+  }
+}
+supply_fun2(P=-1,0,1)
+supply_fun2(P=2,0,1)
+
+```
+
+
+
+
+

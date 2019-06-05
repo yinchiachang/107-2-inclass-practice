@@ -128,8 +128,10 @@ supply_fun3 <- function(P,a,b){
     return(Qs)
   }
 }
-supply_fun3(P=-1,0,1)
-supply_fun3(P=2,0,1)
+supply_fun3(P=-1,0,1) -> A
+supply_fun3(P=2,0,1) -> B
+A
+B
 ```
 
 ```{r}
