@@ -46,15 +46,38 @@ utility_cobb_douglass(1,.beta=0.8,.alpha=0.5,2)
 ```{r}
 utility_cobb_douglass(x=1,.beta = 0.8,.alpha = 0.5,y=2)
 ```
+```{r}
+load(url("https://github.com/tpemartin/github-data/blob/master/loopTranscriptData.Rda?raw=true"))
+```
 
+```{r}
+gpa_fun <- function(studentID){
+  transcriptDataFinal$學號==studentID -> logiChosenStudent
+  
+  subSample <- transcriptDataFinal[logiChosenStudent,]
+  
+  sum(subSample$學期成績*subSample$學分數)/
+    sum(subSample$學分數) -> GPA
+  return(GPA)
+}
+```
 
+```{r}
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
 
+```
 
+```{r}
+for(i in gmailAddress){
+  print(i)
+}
 
-
-
-
-
+```
 
 
 
