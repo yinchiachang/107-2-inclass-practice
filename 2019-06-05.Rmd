@@ -36,3 +36,30 @@ utility_cobb_douglass <- function(x,y,.alpha,.beta){
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+utility_cobb_douglass(1,2,0.5,0.8)
+utility_cobb_douglass(1,2,.beta=0.8,.alpha=0.5)
+utility_cobb_douglass(1,.beta=0.8,2,0.5)
+utility_cobb_douglass(1,.beta=0.8,.alpha=0.5,2)
+```
+
+```{r}
+utility_cobb_douglass(x=1,.beta = 0.8,.alpha = 0.5,y=2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
