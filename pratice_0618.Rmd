@@ -1,0 +1,206 @@
+---
+title: "practice0612"
+author: "chia"
+date: "2019年6月17日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+sequence_source <- c("A","B","C")
+```
+
+
+```{r}
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+
+```
+
+
+```{r}
+library(stringr)
+for(i in seq_along(gmailAddress)){
+  print(i)
+  print(gmailAddress[[i]] )
+}
+
+```
+
+```{r}
+for(i in seq_along(gmailAddress)){
+  if(str_detect(gmailAddress[[i]],"@gmail.com")){
+    print(gmailAddress[[i]])}
+    else{print(str_c(gmailAddress[[i]],"@gmail.com"))
+    }
+}
+  
+```
+1 資料建立與郵件
+1.1 資料建立
+請建立一個data frame名為homeworkData, 它有三個元素，分別是「姓名」、「作業1分數」、「作業2分數」，分別是不同人的姓名，作業1及作業2分數，其class分別是character, numeric, numeric。
+
+請將以下3筆資料放在homeworkData中：
+
+“小明”,10,10
+
+“小花”,9, 10
+
+“小新”,5, 9
+```{r}
+homeworkData <- data.frame(
+   姓名 = c("小明","小花","小新"),
+  作業1分數 = c(10,9,5),
+  作業2分數 = c(10,10,9),
+  stringsAsFactors = FALSE
+)
+
+```
+
+1.2
+以下字串代表要寄給學生作業成績通知信件的信件內容模版：
+```{r}
+emailText <-
+  "親愛的student好，您的作業成績為：作業1, y1分; 作業2, y2分"
+```
+請建立一個函數email_content_fun(input)：
+
+input: homeworkData的一筆資料，如homeworkData[1,]代表第一筆資料，homeworkData[2,]代表第二筆資料，等等。
+它會回傳為該筆資料量身訂做的emailText，其內容為emailText但將其student，y1及y2分別換成input該筆資料的姓名，作業1成績及作業2成績。
+
+```{r}
+library(stringr)
+email_content_fun <- function(input){
+  str_replace(emailText, "student", input$姓名) -> emailTextOut
+  str_replace(emailTextOut,"y1", as.character(input$作業1分數)) -> emailTextOut
+  str_replace(emailTextOut,"y2", as.character(input$作業2分數)) -> emailTextOut
+  return(emailTextOut)
+}
+
+email_content_fun
+
+email_content_fun(homeworkData[1,])
+```
+
+```{r}
+homeworkData[1,]
+homeworkData$姓名
+```
+3 選課準則查詢
+3.1 建立資訊清單
+以下是經濟學系不同入學年學生所適用的選課準則文件網址：
+
+101學年：http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195021.doc
+
+104學年：http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc
+
+105學年：http://www.econ.ntpu.edu.tw/econ/files/Way/20170516144353.doc
+
+107學年：http://www.econ.ntpu.edu.tw/econ/files/Way/20180518121643.pdf
+
+請建立一個list class的答案物件EconCourseSelectionInfo，其中EconCourseSelectionInfo[[“104”]]$url會得到“http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc”; 而“104”若換成其他三個學年任一個，所得到的url訊息也會對應改變。本題答案物件是EconCourseSelectionInfo。
+```{r}
+EconCourseSelectionInfo <- list(
+  "101" = list(
+    "usl" = "http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195021.doc"
+  ),
+  "104" = list(
+    "usl" = "http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195041.doc"
+  ),
+  "105" = list(
+    "usl" = "http://www.econ.ntpu.edu.tw/econ/files/Way/20170516144353.doc"
+  ),
+  "107" = list(
+    "usl" = "http://www.econ.ntpu.edu.tw/econ/files/Way/20180518121643.pdf"
+  )
+)
+
+```
+
+
+```{r}
+EconCourseSelectionInfo[["101"]]
+EconCourseSelectionInfo$`104`$usl
+```
+
+3.2 條件執行
+每屆入學新生所適用的選課準則是以「學生入學年前（含入學年）」中最新的文件為主，如：106學年入學者，在他之前有101，104，及105三份文件，105是當中最新的，故他們適用105學年文件。
+
+請寫一個函數search_courseRules，使用方法為search_courseRules(entranceYear,EconCourseSelectionInfo):
+
+entranceYear: 數值，使用者輸入的入學年，可以是任何的數字。
+
+EconCourseSelectionInfo: list class, 代表經濟系的課程資訊，且依前一題結構架構。
+
+此函數會去EconCourseSelectionInfo中找到對應的url之後return output給使用者。若沒有對應答案，則回傳“很抱歉沒有您入學年的資訊，請打系辦電話”。
+
+```{r}
+
+#適用101 文件 (入學年:101 102 103)
+#適用104 文件 (入學年:104)
+#適用105 文件 (入學年:105 106)
+#適用107 文件 (入學年:107)
+
+search_courseRules <- function(entranceYear,EconCourseSelectionInfo){
+  if(entranceYear %in% c(101,102,103)){
+  print("http://www.econ.ntpu.edu.tw/econ/files/Way/2016072195021.doc")}
+  else if(entranceYear == 104){
+    print(EconCourseSelectionInfo[["104"]]$usl)}
+  else if(entranceYear %in% c(105,106)){
+    print(EconCourseSelectionInfo[["105"]]$usl)
+  }else if(entranceYear == 107){
+    print(EconCourseSelectionInfo[["107"]]$usl)
+  }else{
+    print("很抱歉沒有您入學年的資訊，請打系辦電話")
+  }
+  return(print)
+}
+
+search_courseRules(102)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
