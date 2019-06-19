@@ -308,12 +308,41 @@ saveList[[3]] <- list(姓名="小明",電話="02-86741111")
 saveList # 儲存後
 
 ```
+4 differen time zone
+執行以下程式引入invoiceList物件，其中「訂單時區」與「訂單時間(以訂單時區顯示)」的每筆資料是訂單來自時區及以該時區輸入的下單時間字串，「UTC時間」則是個目前無特別意義的UTC時間。
+
+```{r}
+load(url("https://github.com/tpemartin/github-data/blob/master/invoiceList.Rda?raw=true"))
+c('訂單時區','訂單時間(以訂單時區顯示)','UTC時間') -> names(invoiceList)
+```
+
+請將每個「訂單時區之下單時間」依其「訂單時區」轉成UTC時間date time class（即POSIXct class）後，存在「UTC時間」對應的位置裡。最後一行請打本題答案物件invoiceList。
+```{r}
+(invoiceList$訂單時區=="America/New_York") -> nyLogical
+(invoiceList$訂單時區=="Asia/Taipei") -> tpLogical
+
+invoiceList$`訂單時間(以訂單時區顯示)` [nyLogical] <-
+ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[nyLogical],
+          tz="America/New_York")
+class(invoiceList$`訂單時間(以訂單時區顯示)` [nyLogical])
+```
 
 
+```{r}
+invoiceList$訂單時區["America/New_York"] -> nylogical
+invoiceList$訂單時區["Asia/Taipei"] -> twlogical
 
+library(lubridate)
+invoiceList$`訂單時間(以訂單時區顯示)`[nylogical] <- ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[nylogical], tz = "America/New_York")
+ 
+class(invoiceList$`訂單時間(以訂單時區顯示)`[nylogical])
 
+```
+invoiceList$`訂單時間(以訂單時區顯示)`[twlogical] <- ymd_hms(invoiceList$`訂單時間(以訂單時區顯示)`[twlogical],tz="Asia/Taipei")
 
-
+invoiceList$`訂單時間(以訂單時區顯示)`[nylogical] <- with_tz(invoiceList$`訂單時間(以訂單時區顯示)`[nylogical],tzone="UTC")
+invoiceList$`訂單時間(以訂單時區顯示)`[twlogical] <- with_tz(invoiceList$`訂單時間(以訂單時區顯示)`[twlogical],tzone="UTC")
+```
 
 
 
