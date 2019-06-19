@@ -113,6 +113,42 @@ email_content_fun(homeworkData[1,])
 homeworkData[1,]
 homeworkData$姓名
 ```
+
+
+2 字串數字比較
+寫一個函數str_smallClosest，使用方法為str_smallClosest(chrNumber,criticalNumber)，其中：
+
+chrNumber: 為character class的數字文字向量，如c(“10”,“25”,“11”)
+
+criticalNumber: 為數字。
+
+str_smallClosest(chrNumber,criticalNumber)會找出chrNumber字串數字中「小於等於」criticalNumber中的「最大值」且回傳值依然是character，例如：str_smallClosest(c("10","25","11"),12)會回傳字串“11”。本題答案物件是str_smallClosest。(hint: max()會找出數字向量中的最大值)
+
+```{r}
+str_smallClosest <- function(chrNumber,criticalNumber){
+ as.numeric(chrNumber) -> numNumber
+logiNumber <- numNumber <= criticalNumber
+max(numNumber[logiNumber]) -> output
+return(output)
+}
+
+str_smallClosest
+str_smallClosest(c("10","25","11"),12)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 3 選課準則查詢
 3.1 建立資訊清單
 以下是經濟學系不同入學年學生所適用的選課準則文件網址：
