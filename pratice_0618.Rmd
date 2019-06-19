@@ -136,18 +136,67 @@ str_smallClosest
 str_smallClosest(c("10","25","11"),12)
 ```
 
+範例1
+執行以下程序得到transcriptDataFinal資料及平均成績計算函數gpa_fun():
+```{r}
+load(url("https://www.dropbox.com/s/duh5aaqgl2f5m3z/loopTranscriptData.Rda?raw=1"))
+studentIds <- unique(transcriptDataFinal$學號) # 全部可能學號
+studentIds5 <- studentIds[1:5] # 前5筆學號
+```
+
+```{r}
+
+gpa_fun <- function(studentID){
+  transcriptDataFinal$學號==studentID -> logiChosenStudent
+  
+  subSample <- transcriptDataFinal[logiChosenStudent,]
+  
+  sum(subSample$學期成績*subSample$學分數)/
+    sum(subSample$學分數) -> GPA
+  return(GPA)
+}
 
 
+```
+任務：針對studentIds5裡的學號一一進行print()。
+```{r}
+for (i in studentIds5) {
+print(i)  
+}
+````
+```{r}
+for (i in c(1:5)) {
+print(i)
+}
 
+for (i in c(1:5)) {
+  print(studentIds5[[i]])
+}
+```
 
+```{r}
 
+for (i in seq_along(studentIds5)) {
+  print(studentIds5[[i]])
+}
 
+```
 
+```{r}
+gpa_fun("92aS67fee")
+gpa_fun("d55S6d052")
+gpa_fun("03eS6e785")
+gpa_fun("d86S6c7fa")
+gpa_fun("41fS68fb4")
 
+```
 
+```{r}
+for (i in seq_along(studentIds5)) {
+  print(gpa_fun(studentIds5[[i]]) )
+}
 
-
-
+```
 
 3 選課準則查詢
 3.1 建立資訊清單
@@ -224,10 +273,41 @@ search_courseRules(102)
 
 
 
+```{r}
+saveCharacter <- vector("character",5)
+saveCharacter
 
+saveNumeric <- vector("numeric",5)
+saveNumeric
 
+saveLogical <- vector("logical",5)
+saveLogical
 
+saveList <- vector("list",5)
+saveList
+```
+```{r}
+# 把"你好"存在saveCharacter第3個位置
+saveCharacter # 儲存前
+names(saveCharacter[[3]] )<- "你好"
+saveCharacter # 儲存後
 
+# 把 72.3 存在saveNumeric第3個位置
+saveNumeric # 儲存前
+saveNumeric[[3]] <- 72.3
+saveNumeric # 儲存後
+
+# 把 TRUE 存在saveLogical第3個位置
+saveLogical # 儲存前
+saveLogical[[3]] <- TRUE
+saveLogical # 儲存後
+
+# 把 list(姓名="小明",電話="02-86741111") 存在saveList第3個位置
+saveList # 儲存前
+saveList[[3]] <- list(姓名="小明",電話="02-86741111")
+saveList # 儲存後
+
+```
 
 
 
